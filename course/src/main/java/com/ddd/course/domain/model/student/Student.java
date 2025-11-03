@@ -7,9 +7,9 @@ import com.ddd.course.domain.model.StudentId;
 
 public class Student {
 
-    private StudentId id;
-    private String name;
-    private String email;
+    private final StudentId id;
+    private final String name;
+    private final String email;
     private final List<EnrolledCourse> enrolledCourses = new ArrayList<>();
 
     public Student(StudentId id, String name, String email) {
@@ -55,7 +55,7 @@ public class Student {
 
     public void completeCourse(EnrolledCourse course){
         if(isEnrolled(course)){
-            this.enrolledCourses.stream()
+            this.enrolledCourses
             .forEach(c->{
                 if(c.getId().equals(course.getId())){
                     c.setCurseCompleted();
