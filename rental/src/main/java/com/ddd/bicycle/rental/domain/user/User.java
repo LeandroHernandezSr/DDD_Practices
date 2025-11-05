@@ -51,6 +51,7 @@ public class User {
 
     public void takeBike(HasBike hasBike){
         if (userAlreadyHasABike()) throw new IllegalArgumentException("The user already has a bike");
+        if (getActive().equals(false)) throw new IllegalArgumentException("The user isnt active");
         this.hasBike=hasBike;
     }
 
