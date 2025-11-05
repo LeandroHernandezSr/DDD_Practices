@@ -4,22 +4,14 @@ import com.ddd.bicycle.rental.domain.StationId;
 
 public class HasBike {
     
-    private StationId stationId;
-    private Boolean active;
+    private final StationId stationId;
 
-    public HasBike(StationId stationId, Boolean active) {
+    public HasBike(StationId stationId) {
         this.stationId = stationId;
-        this.active = active;
     }
 
     public StationId getStationId() {
         return stationId;
     }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-
     
 }

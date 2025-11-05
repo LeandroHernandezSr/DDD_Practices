@@ -46,12 +46,16 @@ public class User {
     }
 
     private boolean userAlreadyHasABike(){
-        if (hasBike != null) return hasBike.getActive();
-        return false;
+        return this.hasBike != null;
     }
 
     public void takeBike(HasBike hasBike){
         if (userAlreadyHasABike()) throw new IllegalArgumentException("The user already has a bike");
         this.hasBike=hasBike;
+    }
+
+    public void returnBike(){
+        if (!userAlreadyHasABike()) throw new IllegalArgumentException("The user has returned the bike");
+        this.hasBike=null;
     }
 }
