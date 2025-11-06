@@ -1,4 +1,4 @@
-package com.ddd.bicycle.rental.domain.station;
+package com.ddd.bicycle.rental.domain.model.station;
 
 public class StationTotalCapacity {
     

@@ -1,4 +1,4 @@
-package com.ddd.bicycle.rental.domain;
+package com.ddd.bicycle.rental.domain.model;
 
 import java.util.UUID;
 

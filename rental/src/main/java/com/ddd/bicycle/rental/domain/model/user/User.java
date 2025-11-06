@@ -1,13 +1,13 @@
-package com.ddd.bicycle.rental.domain.user;
+package com.ddd.bicycle.rental.domain.model.user;
 
-import com.ddd.bicycle.rental.domain.UserId;
+import com.ddd.bicycle.rental.domain.model.UserId;
 
 public class User {
 
     private final UserId userId;
-    private String name;
+    private final String name;
     private Boolean active;
-    private HasBike hasBike;
+    private Bike bike;
 
     public User(String name,UserId userId,Boolean active){
         if (name == null) throw new IllegalArgumentException("The name cannot be null");
@@ -31,8 +31,8 @@ public class User {
         return active;
     }
 
-    public HasBike getHasBike() {
-        return hasBike;
+    public Bike getHasBike() {
+        return bike;
     }
 
     public void activeUser(){
@@ -46,17 +46,17 @@ public class User {
     }
 
     private boolean userAlreadyHasABike(){
-        return this.hasBike != null;
+        return this.bike != null;
     }
 
-    public void takeBike(HasBike hasBike){
+    public void takeBike(Bike bike){
         if (userAlreadyHasABike()) throw new IllegalArgumentException("The user already has a bike");
         if (getActive().equals(false)) throw new IllegalArgumentException("The user isnt active");
-        this.hasBike=hasBike;
+        this.bike = bike;
     }
 
     public void returnBike(){
         if (!userAlreadyHasABike()) throw new IllegalArgumentException("The user has returned the bike");
-        this.hasBike=null;
+        this.bike =null;
     }
 }

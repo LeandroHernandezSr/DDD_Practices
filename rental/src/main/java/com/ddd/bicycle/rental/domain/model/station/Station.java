@@ -1,6 +1,6 @@
-package com.ddd.bicycle.rental.domain.station;
+package com.ddd.bicycle.rental.domain.model.station;
 
-import com.ddd.bicycle.rental.domain.StationId;
+import com.ddd.bicycle.rental.domain.model.StationId;
 
 public class Station {
     

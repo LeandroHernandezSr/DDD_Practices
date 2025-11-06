@@ -1,12 +1,12 @@
-package com.ddd.bicycle.rental.domain.user;
+package com.ddd.bicycle.rental.domain.model.user;
 
-import com.ddd.bicycle.rental.domain.StationId;
+import com.ddd.bicycle.rental.domain.model.StationId;
 
-public class HasBike {
+public class Bike {
     
     private final StationId stationId;
 
-    public HasBike(StationId stationId) {
+    public Bike(StationId stationId) {
         this.stationId = stationId;
     }
 
