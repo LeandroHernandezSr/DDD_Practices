@@ -1,4 +1,4 @@
-package com.ddd.bicycle.rental.application;
+package com.ddd.bicycle.rental.application.station;
 
 import com.ddd.bicycle.rental.domain.model.station.Station;
 import com.ddd.bicycle.rental.domain.repository.StationRepository;
