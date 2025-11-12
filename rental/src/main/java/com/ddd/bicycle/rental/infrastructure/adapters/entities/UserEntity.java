@@ -2,19 +2,27 @@ package com.ddd.bicycle.rental.infrastructure.adapters.entities;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String user;
     private Boolean active;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "station_id")
     private StationEntity  station;
 
-    public UserEntity(Long id, String user, Boolean active, StationEntity station) {
+    @PrePersist
+    public void generateId() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();
+        }
+    }
+
+    public UserEntity(String id, String user, Boolean active, StationEntity station) {
         this.id = id;
         this.user = user;
         this.active = active;
@@ -24,11 +32,11 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -2,6 +2,8 @@ package com.ddd.bicycle.rental.application.user;
 
 import com.ddd.bicycle.rental.domain.model.user.User;
 
+import java.util.Optional;
+
 public interface UpdateUserUseCase {
-    User apply(User user);
+    Optional<User> apply(User user);
 }

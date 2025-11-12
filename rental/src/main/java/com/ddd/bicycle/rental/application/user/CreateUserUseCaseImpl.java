@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import com.ddd.bicycle.rental.domain.model.user.User;
 import com.ddd.bicycle.rental.domain.repository.UserRepository;
 
+import java.util.Optional;
+
 @Component
 public class CreateUserUseCaseImpl implements CreateUserUseCase{
 
@@ -15,7 +17,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase{
     }
 
     @Override
-    public User apply(User user) {
+    public Optional<User> apply(User user) {
         return repository.createUser(user);
     }
 

@@ -6,6 +6,8 @@ import com.ddd.bicycle.rental.domain.model.UserId;
 import com.ddd.bicycle.rental.domain.model.user.User;
 import com.ddd.bicycle.rental.domain.repository.UserRepository;
 
+import java.util.Optional;
+
 @Component
 public class DeleteUserUseCaseImpl implements DeleteUserUseCase{
 
@@ -16,8 +18,8 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase{
     }
 
     @Override
-    public User apply(UserId userId) {
-        return this.repository.deleteUser(userId);
+    public void apply(UserId userId) {
+        this.repository.deleteUser(userId);
     }
 
 }

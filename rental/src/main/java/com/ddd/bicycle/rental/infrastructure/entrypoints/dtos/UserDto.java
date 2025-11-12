@@ -2,19 +2,19 @@ package com.ddd.bicycle.rental.infrastructure.entrypoints.dtos;
 
 public class UserDto {
 
-    private final Long id;
+    private final String id;
     private final String user;
     private final Boolean active;
-    private final Long stationId;
+    private final String stationId;
 
-    private UserDto(Long id, String user, Boolean active, Long stationId) {
+    private UserDto(String id, String user, Boolean active,String stationId) {
         this.id = id;
         this.user = user;
         this.active = active;
         this.stationId = stationId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -26,7 +26,7 @@ public class UserDto {
         return active;
     }
 
-    public Long getStationId() {
+    public String getStationId() {
         return stationId;
     }
 
@@ -35,12 +35,12 @@ public class UserDto {
     }
 
     public static class Builder{
-        private Long id;
+        private String id;
         private String user;
         private Boolean active;
-        private Long stationId;
+        private String stationId;
 
-        public Builder id(Long id) {
+        public Builder id(String id) {
             this.id = id;
             return this;
         }
@@ -55,7 +55,7 @@ public class UserDto {
             return this;
         }
 
-        public Builder stationId(Long stationId) {
+        public Builder stationId(String stationId) {
             this.stationId = stationId;
             return this;
         }

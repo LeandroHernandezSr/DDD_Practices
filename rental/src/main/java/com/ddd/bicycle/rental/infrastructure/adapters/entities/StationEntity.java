@@ -1,20 +1,18 @@
 package com.ddd.bicycle.rental.infrastructure.adapters.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Entity
 public class StationEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String stationName;
     private Integer totalCapacity;
     private Integer curentBikeCount;
 
-    public StationEntity(Long id, String stationName, Integer totalCapacity, Integer curentBikeCount) {
+    public StationEntity(String id, String stationName, Integer totalCapacity, Integer curentBikeCount) {
         this.id = id;
         this.stationName = stationName;
         this.totalCapacity = totalCapacity;
@@ -22,6 +20,13 @@ public class StationEntity {
     }
 
     public StationEntity() {
+    }
+
+    @PrePersist
+    public void generateId() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();
+        }
     }
 
     public String getStationName() {
@@ -48,11 +53,11 @@ public class StationEntity {
         this.curentBikeCount = curentBikeCount;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
