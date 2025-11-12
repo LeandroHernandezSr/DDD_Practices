@@ -33,7 +33,7 @@ public class UserMapper {
         return userEntity;
     }
 
-    public UserDto toDto(UserEntity userEntity) {
+    public UserDto entityToDto(UserEntity userEntity) {
         return new UserDto.Builder()
                 .id(userEntity.getId())
                 .user(userEntity.getUser())

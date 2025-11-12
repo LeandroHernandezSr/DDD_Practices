@@ -4,6 +4,8 @@ import com.ddd.bicycle.rental.domain.model.station.Station;
 import com.ddd.bicycle.rental.domain.repository.StationRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class CreateStationUseCaseImpl implements CreateStationUseCase {
 
@@ -14,7 +16,7 @@ public class CreateStationUseCaseImpl implements CreateStationUseCase {
     }
 
     @Override
-    public Station apply(Station station) {
+    public Optional<Station> apply(Station station) {
         return repository.create(station);
     }
 }

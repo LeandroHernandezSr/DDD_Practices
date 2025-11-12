@@ -7,6 +7,8 @@ import com.ddd.bicycle.rental.infrastructure.adapters.repositories.jpa.StationJp
 
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class StationRepositoryImpl implements StationRepository {
 
@@ -17,22 +19,22 @@ public class StationRepositoryImpl implements StationRepository {
     }
 
     @Override
-    public Station findById(StationId stationId) {
+    public Optional<Station> findById(StationId stationId) {
         return null;
     }
 
     @Override
-    public Station create(Station station) {
+    public Optional<Station> create(Station station) {
         return null;
     }
 
     @Override
-    public Station update(Station station) {
+    public Optional<Station> update(Station station) {
         return null;
     }
 
     @Override
-    public Station delete(StationId stationId) {
-        return null;
+    public void delete(StationId stationId) {
+
     }
 }
