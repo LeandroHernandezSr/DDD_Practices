@@ -1,7 +1,8 @@
-package com.ddd.bicycle.rental.application.station;
+package com.ddd.bicycle.rental.application.usecases.station;
 
 import com.ddd.bicycle.rental.domain.model.StationId;
-import com.ddd.bicycle.rental.domain.repository.StationRepository;
+import com.ddd.bicycle.rental.domain.ports.in.station.DeleteStationUseCase;
+import com.ddd.bicycle.rental.domain.ports.out.StationRepository;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,13 +1,14 @@
-package com.ddd.bicycle.rental.application.user;
+package com.ddd.bicycle.rental.application.usecases.user;
 
+import com.ddd.bicycle.rental.domain.ports.in.user.FindUserByIdUseCase;
 import org.springframework.stereotype.Component;
 
 import com.ddd.bicycle.rental.domain.model.UserId;
 import com.ddd.bicycle.rental.domain.model.user.User;
-import com.ddd.bicycle.rental.domain.repository.UserRepository;
+import com.ddd.bicycle.rental.domain.ports.out.UserRepository;
 
 @Component
-public class FindUserByIdUseCaseImpl implements FindUserByIdUseCase{
+public class FindUserByIdUseCaseImpl implements FindUserByIdUseCase {
 
     private final UserRepository repository;
 

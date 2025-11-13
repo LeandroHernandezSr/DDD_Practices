@@ -1,13 +1,14 @@
-package com.ddd.bicycle.rental.application.user;
+package com.ddd.bicycle.rental.application.usecases.user;
 
 import com.ddd.bicycle.rental.domain.model.user.User;
-import com.ddd.bicycle.rental.domain.repository.UserRepository;
+import com.ddd.bicycle.rental.domain.ports.in.user.UpdateUserUseCase;
+import com.ddd.bicycle.rental.domain.ports.out.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class UpdateUserUseCaseImpl implements UpdateUserUseCase{
+public class UpdateUserUseCaseImpl implements UpdateUserUseCase {
 
     private final UserRepository userRepository;
 

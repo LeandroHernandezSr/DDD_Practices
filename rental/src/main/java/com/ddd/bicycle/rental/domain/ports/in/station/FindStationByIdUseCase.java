@@ -1,8 +1,10 @@
-package com.ddd.bicycle.rental.application.station;
+package com.ddd.bicycle.rental.domain.ports.in.station;
 
 import com.ddd.bicycle.rental.domain.model.StationId;
 import com.ddd.bicycle.rental.domain.model.station.Station;
 
+import java.util.Optional;
+
 public interface FindStationByIdUseCase {
-    Station apply(StationId stationId);
+    Optional<Station> apply(StationId stationId);
 }

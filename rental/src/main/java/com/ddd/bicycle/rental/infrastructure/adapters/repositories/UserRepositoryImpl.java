@@ -2,7 +2,7 @@ package com.ddd.bicycle.rental.infrastructure.adapters.repositories;
 
 import com.ddd.bicycle.rental.domain.model.UserId;
 import com.ddd.bicycle.rental.domain.model.user.User;
-import com.ddd.bicycle.rental.domain.repository.UserRepository;
+import com.ddd.bicycle.rental.domain.ports.out.UserRepository;
 import com.ddd.bicycle.rental.infrastructure.adapters.repositories.jpa.UserJpaRepository;
 import com.ddd.bicycle.rental.infrastructure.utils.UserMapper;
 import org.springframework.stereotype.Repository;

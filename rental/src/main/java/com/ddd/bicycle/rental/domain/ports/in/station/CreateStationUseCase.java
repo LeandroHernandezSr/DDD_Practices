@@ -1,4 +1,4 @@
-package com.ddd.bicycle.rental.application.station;
+package com.ddd.bicycle.rental.domain.ports.in.station;
 
 import com.ddd.bicycle.rental.domain.model.station.Station;
 

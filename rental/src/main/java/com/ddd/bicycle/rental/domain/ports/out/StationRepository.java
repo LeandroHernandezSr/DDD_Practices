@@ -1,4 +1,4 @@
-package com.ddd.bicycle.rental.domain.repository;
+package com.ddd.bicycle.rental.domain.ports.out;
 
 import com.ddd.bicycle.rental.domain.model.StationId;
 import com.ddd.bicycle.rental.domain.model.station.Station;
