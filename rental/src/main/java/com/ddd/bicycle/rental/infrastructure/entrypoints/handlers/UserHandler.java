@@ -1,11 +1,17 @@
 package com.ddd.bicycle.rental.infrastructure.entrypoints.handlers;
 
+import com.ddd.bicycle.rental.domain.model.UserId;
+import com.ddd.bicycle.rental.domain.model.user.User;
 import com.ddd.bicycle.rental.domain.ports.in.user.CreateUserUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.user.DeleteUserUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.user.FindUserByIdUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.user.UpdateUserUseCase;
 import com.ddd.bicycle.rental.infrastructure.entrypoints.dtos.UserDto;
 import com.ddd.bicycle.rental.infrastructure.utils.UserMapper;
+
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +33,18 @@ public class UserHandler {
     }
 
 
-    public ResponseEntity<?>createUser(UserDto userDto) {
-        return ResponseEntity.ok(createUserUseCase.apply(null));
+    public Optional<ResponseEntity<User>>createUser(UserDto userDto) {
+        return Optional.of(userDto)
+            .map(userMapper::dtoToModel)
+            .flatMap(createUserUseCase::apply)
+            .map(ResponseEntity::ok);
     }
+
+    public ResponseEntity<String> delete(String userId){
+        deleteUserUseCase.apply(new UserId(UUID.fromString(userId)));
+        return ResponseEntity.ok(userId);
+    }
+
+    
 
 }

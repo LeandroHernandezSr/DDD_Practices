@@ -1,9 +1,10 @@
-package com.ddd.bicycle.rental.application;
+package com.ddd.bicycle.rental;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+
+@SpringBootApplication(scanBasePackages = "com.ddd.bicycle.rental")
 public class RentalApplication {
 
 	public static void main(String[] args) {
