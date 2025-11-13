@@ -4,7 +4,9 @@ import com.ddd.bicycle.rental.domain.ports.in.user.CreateUserUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.user.DeleteUserUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.user.FindUserByIdUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.user.UpdateUserUseCase;
+import com.ddd.bicycle.rental.infrastructure.entrypoints.dtos.UserDto;
 import com.ddd.bicycle.rental.infrastructure.utils.UserMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,6 +27,8 @@ public class UserHandler {
     }
 
 
-
+    public ResponseEntity<?>createUser(UserDto userDto) {
+        return ResponseEntity.ok(createUserUseCase.apply(null));
+    }
 
 }

@@ -57,4 +57,8 @@ public class UserMapper {
         return userEntity;
     }
 
+    public User dtoToModel(UserDto userDto) {
+        return new User(userDto.getUser(),new UserId(UUID.fromString(userDto.getId())),userDto.getActive());
+    }
+
 }
