@@ -7,6 +7,9 @@ import com.ddd.bicycle.rental.domain.ports.in.station.FindStationByIdUseCase;
 import com.ddd.bicycle.rental.domain.ports.in.station.UpdateStationUseCase;
 import com.ddd.bicycle.rental.infrastructure.entrypoints.dtos.StationDto;
 import com.ddd.bicycle.rental.infrastructure.utils.StationMapper;
+
+import java.util.UUID;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -37,8 +40,8 @@ public class StationHandler {
         return ResponseEntity.ok(updateStationUseCase.apply(mapper.dtoToModel(stationDto)).map(mapper::modelToDto).orElseThrow(()->new RuntimeException("Failed to update station")));
     }
 
-    public ResponseEntity<Void> delete(StationId stationId) {
-        this.deleteStationUseCase.apply(stationId);
+    public ResponseEntity<Void> delete(String id) {
+        this.deleteStationUseCase.apply(new StationId(UUID.fromString(id)));
         return ResponseEntity.ok().build();
     }
 
