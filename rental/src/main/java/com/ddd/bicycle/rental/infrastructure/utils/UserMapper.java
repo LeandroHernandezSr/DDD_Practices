@@ -12,6 +12,9 @@ import java.util.UUID;
 @Component
 public class UserMapper {
 
+    public UserMapper() {
+    }
+
     public UserEntity dtoToEntity(UserDto userDto) {
         UserEntity userEntity = new UserEntity();
 
@@ -61,4 +64,13 @@ public class UserMapper {
         return new User(userDto.getUser(),new UserId(UUID.fromString(userDto.getId())),userDto.getActive());
     }
 
+
+    public UserDto modelToDto(User user) {
+        return new UserDto.Builder()
+                .id(user.getUserId().getId().toString())
+                .user(user.getName())
+                .active(user.getActive())
+                .stationId(user.getHasBike().getStationId().getId().toString())
+                .build();
+    }
 }

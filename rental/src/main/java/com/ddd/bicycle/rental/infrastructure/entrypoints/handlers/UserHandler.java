@@ -45,6 +45,12 @@ public class UserHandler {
         return ResponseEntity.ok(userId);
     }
 
-    
+    public ResponseEntity<User>findUserById(String userId){
+        return ResponseEntity.ok(findUserByIdUseCase.apply(new UserId(UUID.fromString(userId))));
+    }
+
+    public ResponseEntity<Optional<UserDto>>updateUser(UserDto userDto){
+        return ResponseEntity.ok(updateUserUseCase.apply(userMapper.dtoToModel(userDto)).map(userMapper::modelToDto));
+    }
 
 }
