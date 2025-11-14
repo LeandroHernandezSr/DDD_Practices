@@ -43,4 +43,20 @@ public class StationMapper {
                 .totalCapacity(stationEntity.getTotalCapacity())
                 .build();
     }
+
+    public StationDto modelToDto(Station station) {
+        return new StationDto.Builder()
+                .id(station.getStationId().getId().toString())
+                .totalCapacity(station.getTotalCapacity().getTotalCapacity())
+                .curentBikeCount(station.getTotalCapacity().getCurrentBikeCount())
+                .build();
+    }
+
+    public Station dtoToModel(StationDto stationDto) {
+        return new Station(
+                new StationId(UUID.fromString(stationDto.getId())),
+                stationDto.getStationName(),
+                new StationTotalCapacity(stationDto.getTotalCapacity(),stationDto.getCurentBikeCount())
+        );
+    }
 }

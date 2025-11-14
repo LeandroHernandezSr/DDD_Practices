@@ -33,11 +33,13 @@ public class UserHandler {
     }
 
 
-    public Optional<ResponseEntity<User>>createUser(UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(UserDto userDto) {
         return Optional.of(userDto)
             .map(userMapper::dtoToModel)
             .flatMap(createUserUseCase::apply)
-            .map(ResponseEntity::ok);
+            .map(userMapper::modelToDto)
+            .map(ResponseEntity::ok)
+            .orElseThrow(()->new RuntimeException("Error while creating user"));
     }
 
     public ResponseEntity<String> delete(String userId){
