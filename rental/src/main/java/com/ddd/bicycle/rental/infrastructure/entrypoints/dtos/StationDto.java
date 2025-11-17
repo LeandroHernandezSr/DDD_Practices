@@ -5,13 +5,13 @@ public class StationDto {
     private final String id;
     private final String stationName;
     private final Integer totalCapacity;
-    private final Integer curentBikeCount;
+    private final Integer currentBikeCount;
 
-    private StationDto(String id, String stationName, Integer totalCapacity, Integer curentBikeCount) {
+    private StationDto(String id, String stationName, Integer totalCapacity, Integer currentBikeCount) {
         this.id = id;
         this.stationName = stationName;
         this.totalCapacity = totalCapacity;
-        this.curentBikeCount = curentBikeCount;
+        this.currentBikeCount = currentBikeCount;
     }
 
     public String getId() {
@@ -26,8 +26,8 @@ public class StationDto {
         return totalCapacity;
     }
 
-    public Integer getCurentBikeCount() {
-        return curentBikeCount;
+    public Integer getCurrentBikeCount() {
+        return currentBikeCount;
     }
 
     public static Builder builder() {

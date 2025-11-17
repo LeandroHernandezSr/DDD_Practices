@@ -19,7 +19,7 @@ public class CreateStationController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<StationDto> create(StationDto stationDto){
+    public ResponseEntity<StationDto> create(@RequestBody StationDto stationDto){
         return this.handler.create(stationDto);
     }
 }

@@ -30,7 +30,7 @@ public class StationMapper {
     public StationEntity dtoToEntity(StationDto stationDto) {
         StationEntity stationEntity = new StationEntity();
         stationEntity.setStationName(stationDto.getStationName());
-        stationEntity.setCurentBikeCount(stationDto.getCurentBikeCount());
+        stationEntity.setCurentBikeCount(stationDto.getCurrentBikeCount());
         stationEntity.setTotalCapacity(stationDto.getTotalCapacity());
         return stationEntity;
     }
@@ -47,6 +47,7 @@ public class StationMapper {
     public StationDto modelToDto(Station station) {
         return new StationDto.Builder()
                 .id(station.getStationId().getId().toString())
+                .stationName(station.getName())
                 .totalCapacity(station.getTotalCapacity().getTotalCapacity())
                 .curentBikeCount(station.getTotalCapacity().getCurrentBikeCount())
                 .build();
@@ -54,9 +55,9 @@ public class StationMapper {
 
     public Station dtoToModel(StationDto stationDto) {
         return new Station(
-                new StationId(UUID.fromString(stationDto.getId())),
+                new StationId(stationDto.getId() != null ? UUID.fromString(stationDto.getId()):null),
                 stationDto.getStationName(),
-                new StationTotalCapacity(stationDto.getTotalCapacity(),stationDto.getCurentBikeCount())
+                new StationTotalCapacity(stationDto.getTotalCapacity(),stationDto.getCurrentBikeCount())
         );
     }
 }
