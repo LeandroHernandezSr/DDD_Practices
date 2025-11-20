@@ -1,19 +1,14 @@
 package com.ddd.bicycle.rental.infrastructure.entrypoints.handlers;
 
 import com.ddd.bicycle.rental.domain.model.UserId;
-import com.ddd.bicycle.rental.domain.model.user.User;
-import com.ddd.bicycle.rental.domain.ports.in.user.CreateUserUseCase;
-import com.ddd.bicycle.rental.domain.ports.in.user.DeleteUserUseCase;
-import com.ddd.bicycle.rental.domain.ports.in.user.FindUserByIdUseCase;
-import com.ddd.bicycle.rental.domain.ports.in.user.UpdateUserUseCase;
+import com.ddd.bicycle.rental.domain.ports.in.user.*;
 import com.ddd.bicycle.rental.infrastructure.entrypoints.dtos.UserDto;
 import com.ddd.bicycle.rental.infrastructure.utils.UserMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
 @Component
 public class UserHandler {
@@ -22,13 +17,15 @@ public class UserHandler {
     private final DeleteUserUseCase deleteUserUseCase;
     private final FindUserByIdUseCase  findUserByIdUseCase;
     private final UpdateUserUseCase updateUserUseCase;
+    private final RentBikeUseCase  rentBikeUseCase;
     private final UserMapper  userMapper;
 
-    public UserHandler(CreateUserUseCase createUserUseCase, DeleteUserUseCase deleteUserUseCase, FindUserByIdUseCase findUserByIdUseCase, UpdateUserUseCase updateUserUseCase, UserMapper userMapper) {
+    public UserHandler(CreateUserUseCase createUserUseCase, DeleteUserUseCase deleteUserUseCase, FindUserByIdUseCase findUserByIdUseCase, UpdateUserUseCase updateUserUseCase, RentBikeUseCase rentBikeUseCase, UserMapper userMapper) {
         this.createUserUseCase = createUserUseCase;
         this.deleteUserUseCase = deleteUserUseCase;
         this.findUserByIdUseCase = findUserByIdUseCase;
         this.updateUserUseCase = updateUserUseCase;
+        this.rentBikeUseCase = rentBikeUseCase;
         this.userMapper = userMapper;
     }
 
@@ -55,6 +52,11 @@ public class UserHandler {
         return ResponseEntity.ok(updateUserUseCase.apply(userMapper.dtoToModel(userDto)).map(userMapper::modelToDto)
                 .orElseThrow(()->new RuntimeException("Error while updating user"))
         );
+    }
+
+    public ResponseEntity<Void>rentBike(String userId,String stationId){
+        this.rentBikeUseCase.apply(userId,stationId);
+        return ResponseEntity.ok().build();
     }
 
 }

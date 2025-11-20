@@ -10,7 +10,7 @@ import com.ddd.bicycle.rental.domain.model.user.Bike;
 import com.ddd.bicycle.rental.domain.model.user.User;
 
 @Service
-public class RentBikeService {
+public class RentBikeService{
     public Map<String,Object> rent(Station station,User user){
 
         Map<String,Object>aggregations=new HashMap<>();
