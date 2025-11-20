@@ -22,11 +22,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findById(UserId userId) {
-        return userJpaRepository.findById(userId.getId().toString())
-                .stream()
-                .map(userMapper::entityToModel)
-                .findFirst()
-                .orElse(null);
+        return userJpaRepository.findById(userId.getId())
+            .map(userMapper::entityToModel)
+            .orElse(null);
     }
 
     @Override
