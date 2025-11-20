@@ -24,7 +24,7 @@ public class StationTotalCapacity {
     }
 
     public void reduceBikeCount(){
-        if (currentBikeCount <= 0) throw new IllegalArgumentException("The currentBikeCount cannot be small than zero");
+        if (currentBikeCount < 0) throw new IllegalArgumentException("The currentBikeCount cannot be small than zero");
         this.currentBikeCount--;
     }
 }

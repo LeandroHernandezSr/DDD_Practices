@@ -51,17 +51,19 @@ public class UserMapper {
 
     public UserEntity modelToEntity(User user) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(user.getUserId().getId().toString());
+        userEntity.setId(user.getUserId() == null ? null : user.getUserId().getId().toString());
         userEntity.setUser(user.getName());
         userEntity.setActive(user.getActive());
-        StationEntity stationEntity = new StationEntity();
-        stationEntity.setId(user.getHasBike().getStationId().toString());
-        userEntity.setStation(stationEntity);
+        if (user.getHasBike() != null){
+            StationEntity stationEntity = new StationEntity();
+            stationEntity.setId(user.getHasBike().getStationId().toString());
+            userEntity.setStation(stationEntity);
+        }
         return userEntity;
     }
 
     public User dtoToModel(UserDto userDto) {
-        return new User(userDto.getUser(),new UserId(UUID.fromString(userDto.getId())),userDto.getActive());
+        return new User(userDto.getUser(),userDto.getId() == null ? null:new UserId(UUID.fromString(userDto.getId())),userDto.getActive());
     }
 
 
@@ -70,7 +72,7 @@ public class UserMapper {
                 .id(user.getUserId().getId().toString())
                 .user(user.getName())
                 .active(user.getActive())
-                .stationId(user.getHasBike().getStationId().getId().toString())
+                .stationId(user.getHasBike() != null ? user.getHasBike().getStationId().getId().toString():null)
                 .build();
     }
 }

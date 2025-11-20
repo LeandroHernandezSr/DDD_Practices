@@ -11,9 +11,7 @@ public class User {
 
     public User(String name,UserId userId,Boolean active){
         if (name == null) throw new IllegalArgumentException("The name cannot be null");
-        if (userId == null) throw new IllegalArgumentException("The userId cannot be null");
-        if (active == null) throw new IllegalArgumentException("The variable active cannot be null");
-
+    
         this.userId=userId;
         this.name=name;
         this.active=active;
