@@ -55,7 +55,7 @@ public class UserHandler {
     }
 
     public ResponseEntity<Void>rentBike(String userId,String stationId){
-        this.rentBikeUseCase.apply(userId,stationId);
+        this.rentBikeUseCase.apply(stationId,userId);
         return ResponseEntity.ok().build();
     }
 

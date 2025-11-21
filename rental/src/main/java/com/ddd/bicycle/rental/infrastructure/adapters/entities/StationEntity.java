@@ -7,12 +7,13 @@ import java.util.UUID;
 @Entity
 public class StationEntity {
     @Id
-    private String id;
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
     private String stationName;
     private Integer totalCapacity;
     private Integer curentBikeCount;
 
-    public StationEntity(String id, String stationName, Integer totalCapacity, Integer curentBikeCount) {
+    public StationEntity(UUID id, String stationName, Integer totalCapacity, Integer curentBikeCount) {
         this.id = id;
         this.stationName = stationName;
         this.totalCapacity = totalCapacity;
@@ -25,7 +26,7 @@ public class StationEntity {
     @PrePersist
     public void generateId() {
         if (this.id == null) {
-            this.id = UUID.randomUUID().toString();
+            this.id = UUID.randomUUID();
         }
     }
 
@@ -53,11 +54,11 @@ public class StationEntity {
         this.curentBikeCount = curentBikeCount;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

@@ -13,14 +13,14 @@ import java.util.UUID;
 public class StationMapper {
 
     public Station entityToModel(StationEntity stationEntity) {
-        return  new Station(new StationId(UUID.fromString(stationEntity.getId())),stationEntity.getStationName(),new StationTotalCapacity(stationEntity.getTotalCapacity(),stationEntity.getCurentBikeCount()));
+        return  new Station(new StationId(stationEntity.getId()),stationEntity.getStationName(),new StationTotalCapacity(stationEntity.getTotalCapacity(),stationEntity.getCurentBikeCount()));
     }
 
     public StationEntity modelToEntity(Station station) {
         StationEntity stationEntity = new StationEntity();
         stationEntity.setStationName(station.getName());
         if (station.getStationId().getId() != null) {
-            stationEntity.setId(station.getStationId().getId().toString());
+            stationEntity.setId(station.getStationId().getId());
         }
         stationEntity.setCurentBikeCount(station.getTotalCapacity().getCurrentBikeCount());
         stationEntity.setTotalCapacity(station.getTotalCapacity().getTotalCapacity());
@@ -37,7 +37,7 @@ public class StationMapper {
 
     public StationDto entityToDto(StationEntity stationEntity) {
         return StationDto.builder()
-                .id(stationEntity.getId() != null ? stationEntity.getId():null)
+                .id(stationEntity.getId() != null ? stationEntity.getId().toString():null)
                 .stationName(stationEntity.getStationName())
                 .curentBikeCount(stationEntity.getCurentBikeCount())
                 .totalCapacity(stationEntity.getTotalCapacity())

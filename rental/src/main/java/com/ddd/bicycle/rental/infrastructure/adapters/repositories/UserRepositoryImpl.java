@@ -22,6 +22,9 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findById(UserId userId) {
+        System.out.println("UUID buscado: " + userId.getId());
+        System.out.println("UUID RAW (sin guiones): " + userId.getId().toString().replace("-", "").toUpperCase());
+
         return userJpaRepository.findById(userId.getId())
             .map(userMapper::entityToModel)
             .orElse(null);
@@ -45,6 +48,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void deleteUser(UserId userId) {
-        this.userJpaRepository.deleteById(userId.getId().toString());
+        this.userJpaRepository.deleteById(userId.getId());
     }
 }

@@ -8,7 +8,8 @@ import java.util.UUID;
 public class UserEntity {
 
     @Id
-    private String id;
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
     private String user;
     private Boolean active;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -18,11 +19,11 @@ public class UserEntity {
     @PrePersist
     public void generateId() {
         if (this.id == null) {
-            this.id = UUID.randomUUID().toString();
+            this.id = UUID.randomUUID();
         }
     }
 
-    public UserEntity(String id, String user, Boolean active, StationEntity station) {
+    public UserEntity(UUID id, String user, Boolean active, StationEntity station) {
         this.id = id;
         this.user = user;
         this.active = active;
@@ -32,11 +33,11 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

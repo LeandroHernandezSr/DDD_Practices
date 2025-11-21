@@ -19,7 +19,7 @@ public class UserMapper {
         UserEntity userEntity = new UserEntity();
 
         if (userDto != null) {
-            userEntity.setId(userDto.getId());
+            userEntity.setId(UUID.fromString(userDto.getId()));
         }
 
         userEntity.setUser(userDto.getUser());
@@ -27,7 +27,7 @@ public class UserMapper {
 
         if (userDto.getStationId() != null) {
             StationEntity  stationEntity = new StationEntity();
-            stationEntity.setId(userDto.getStationId());
+            stationEntity.setId(UUID.fromString(userDto.getStationId()));
             userEntity.setStation(stationEntity);
         }else{
             userEntity.setStation(null);
@@ -38,25 +38,25 @@ public class UserMapper {
 
     public UserDto entityToDto(UserEntity userEntity) {
         return new UserDto.Builder()
-                .id(userEntity.getId())
+                .id(userEntity.getId().toString())
                 .user(userEntity.getUser())
                 .active(userEntity.getActive())
-                .stationId(userEntity.getStation().getId())
+                .stationId(userEntity.getStation().getId().toString())
                 .build();
     }
 
     public User entityToModel(UserEntity userEntity) {
-        return new User(userEntity.getUser(),new UserId(UUID.fromString(userEntity.getId())),userEntity.getActive());
+        return new User(userEntity.getUser(),new UserId(userEntity.getId()),userEntity.getActive());
     }
 
     public UserEntity modelToEntity(User user) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(user.getUserId() == null ? null : user.getUserId().getId().toString());
+        userEntity.setId(user.getUserId() == null ? null : user.getUserId().getId());
         userEntity.setUser(user.getName());
         userEntity.setActive(user.getActive());
         if (user.getHasBike() != null){
             StationEntity stationEntity = new StationEntity();
-            stationEntity.setId(user.getHasBike().getStationId().toString());
+            stationEntity.setId(user.getHasBike().getStationId().getId());
             userEntity.setStation(stationEntity);
         }
         return userEntity;

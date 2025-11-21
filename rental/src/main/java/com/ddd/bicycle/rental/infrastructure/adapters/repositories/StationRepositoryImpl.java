@@ -23,7 +23,7 @@ public class StationRepositoryImpl implements StationRepository {
 
     @Override
     public Optional<Station> findById(StationId stationId) {
-        return this.repository.findById(stationId.getId().toString())
+        return this.repository.findById(stationId.getId())
                 .map(mapper::entityToModel);
     }
 
@@ -45,6 +45,6 @@ public class StationRepositoryImpl implements StationRepository {
 
     @Override
     public void delete(StationId stationId) {
-        this.repository.deleteById(stationId.getId().toString());
+        this.repository.deleteById(stationId.getId());
     }
 }

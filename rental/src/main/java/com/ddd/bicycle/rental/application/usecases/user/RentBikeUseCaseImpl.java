@@ -32,7 +32,7 @@ public class RentBikeUseCaseImpl implements RentBikeUseCase {
         if (userId == null) throw new IllegalArgumentException("UserId cannot be null");
 
         var user=userRepository.findById(new UserId(UUID.fromString(userId)));
-        var station=stationRepository.findById(new StationId(UUID.fromString(stationId))).orElseThrow(()->new RuntimeException("Station not found"));
+        var station=stationRepository.findById(new StationId(UUID.fromString(stationId))).get();
 
         Map<String,Object>rentMap=service.rent(station, user);
 
