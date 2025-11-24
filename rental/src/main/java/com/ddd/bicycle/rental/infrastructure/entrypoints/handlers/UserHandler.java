@@ -1,5 +1,6 @@
 package com.ddd.bicycle.rental.infrastructure.entrypoints.handlers;
 
+import com.ddd.bicycle.rental.domain.model.StationId;
 import com.ddd.bicycle.rental.domain.model.UserId;
 import com.ddd.bicycle.rental.domain.ports.in.user.*;
 import com.ddd.bicycle.rental.infrastructure.entrypoints.dtos.UserDto;
@@ -18,14 +19,16 @@ public class UserHandler {
     private final FindUserByIdUseCase  findUserByIdUseCase;
     private final UpdateUserUseCase updateUserUseCase;
     private final RentBikeUseCase  rentBikeUseCase;
+    private final ReturnBikeUseCase returnBikeUseCase;
     private final UserMapper  userMapper;
 
-    public UserHandler(CreateUserUseCase createUserUseCase, DeleteUserUseCase deleteUserUseCase, FindUserByIdUseCase findUserByIdUseCase, UpdateUserUseCase updateUserUseCase, RentBikeUseCase rentBikeUseCase, UserMapper userMapper) {
+    public UserHandler(CreateUserUseCase createUserUseCase, DeleteUserUseCase deleteUserUseCase, FindUserByIdUseCase findUserByIdUseCase, UpdateUserUseCase updateUserUseCase, RentBikeUseCase rentBikeUseCase,ReturnBikeUseCase returnBikeUseCase, UserMapper userMapper) {
         this.createUserUseCase = createUserUseCase;
         this.deleteUserUseCase = deleteUserUseCase;
         this.findUserByIdUseCase = findUserByIdUseCase;
         this.updateUserUseCase = updateUserUseCase;
         this.rentBikeUseCase = rentBikeUseCase;
+        this.returnBikeUseCase=returnBikeUseCase;
         this.userMapper = userMapper;
     }
 
@@ -56,6 +59,11 @@ public class UserHandler {
 
     public ResponseEntity<Void>rentBike(String userId,String stationId){
         this.rentBikeUseCase.apply(stationId,userId);
+        return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<Void>returnBike(String userId,String stationId){
+        this.returnBikeUseCase.apply(new UserId(UUID.fromString(userId)), new StationId(UUID.fromString(stationId)));
         return ResponseEntity.ok().build();
     }
 
